@@ -7,13 +7,16 @@ COPY qemu-arm-static /usr/bin
 # Install dependencies to add Tor's repository.
 RUN apk update && apk upgrade && \
     apk add tor && \
-    rm /var/cache/apk/* && \
-    cp /etc/tor/torrc.sample /etc/tor/torrc
+    rm /var/cache/apk/* 
 
-RUN echo "SocksPort 0.0.0.0:9050" > /etc/tor/torrc
+COPY torrc.bridge /etc/tor/torrc.bridge
+COPY torrc.middle /etc/tor/torrc.middle
+COPY torrc.exit /etc/tor/torrc.exit
 
-VOLUME [ "/etc/tor" ]
+COPY config.sh /etc/tor/config.sh
+RUN chmod +x /etc/tor/config.sh
+
 EXPOSE 9050/tcp
+VOLUME /etc/tor /home/tord/.tor
 
-USER tor
-CMD [ "/usr/bin/tor -f /etc/tor/torrc"]
+CMD [ "/etc/tor/config.sh"]

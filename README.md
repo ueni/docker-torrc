@@ -1,4 +1,4 @@
-# docker-obfs4-bridge
+# docker-torrc
 
 This repository contains the docker files for a Tor relay.
 

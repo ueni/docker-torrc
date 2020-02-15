@@ -1,0 +1,9 @@
+User tord
+DataDirectory /home/tord/.tor
+ORPort 9001
+SocksPort 9050
+SocksBindAddress 0.0.0.0
+Nickname ${NICKNAME}
+ContactInfo ${$CONTACTINFO}
+
+BridgeRelay 1
