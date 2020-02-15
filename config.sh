@@ -1,5 +1,7 @@
 #!/bin/sh
 
+args="$@"
+
 if [ -z "$TORRC" ]; then
   echo "Please provide a valid TORRC parameter!"
   echo "TORRC: $TORRC"
@@ -43,4 +45,4 @@ cp $TORRC /etc/tor/torrc -f
 
 cat /etc/tor/torrc
 
-tor -f /etc/tor/torrc
+tor -f /etc/tor/torrc $args
