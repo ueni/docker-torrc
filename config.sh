@@ -30,7 +30,9 @@ if [ -z "$TORRC" ]; then
 fi
 
 echo "Using template $TORRC"
-chown -Rv tord:tord /home/tord/
+chown -Rv debian-tor:debian-tor /home/debian-tor/
+chown -Rv debian-tor:debian-tor /etc/tor/
+chown -Rv debian-tor:debian-tor /var/log/tor/
 
 # Assumes a key-value'ish pair
 # $1 is the key and $2 is the value
