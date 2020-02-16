@@ -1,4 +1,4 @@
-IMAGE=ueniueni/arm32v7-torrc
+IMAGE=ueniueni/arm32v7.torrc
 
 .PHONY: tag
 tag:
