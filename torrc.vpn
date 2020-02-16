@@ -1,0 +1,17 @@
+User tord
+DataDirectory /home/tord/.tor
+Nickname ${NICKNAME}
+ContactInfo ${CONTACTINFO}
+
+AutomapHostsSuffixes .onion,.exit
+AutomapHostsOnResolve 1
+
+VirtualAddrNetwork 10.0.0.0/10
+DNSPort   0.0.0.0:9053
+TransPort 0.0.0.0:9040
+SocksPort 0.0.0.0:9050
+
+UseBridges 1
+#Here is an example of tor bridges. you can obtain it from: bridges.torproject.org
+#Bridge obfs4 IP:port KEY cert=CERT iat-mo$
+#ClientTransportPlugin obfs4 exec /usr/bin/obfs4proxy

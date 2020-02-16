@@ -6,19 +6,21 @@ COPY qemu-arm-static /usr/bin
 
 # Install dependencies to add Tor's repository.
 RUN apk update && apk upgrade && \
-    apk add tor && \
+    apk add tor && \    
+    apk add obfs4proxy && \
     rm /var/cache/apk/* && \
     addgroup -g 20000 -S tord && adduser -u 20000 -G tord -S tord && \
     chown -Rv tord:tord /home/tord/
 
-COPY torrc.bridge /etc/tor/torrc.bridge
-COPY torrc.middle /etc/tor/torrc.middle
-COPY torrc.exit /etc/tor/torrc.exit
+COPY torrc.bridge /data/torrc.bridge
+COPY torrc.middle /data/torrc.middle
+COPY torrc.exit /data/torrc.exit
+COPY torrc.vpn /data/torrc.vpn
 
-COPY config.sh /etc/tor/config.sh
-RUN chmod +x /etc/tor/config.sh
+COPY config.sh /data/config.sh
+RUN chmod +x /data/config.sh
 
 EXPOSE 9050/tcp
 VOLUME /etc/tor /home/tord/.tor
 
-CMD [ "/etc/tor/config.sh"]
+CMD [ "/data/config.sh"]

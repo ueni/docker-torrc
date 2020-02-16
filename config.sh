@@ -1,6 +1,27 @@
 #!/bin/sh
 
-args="$@"
+FILE_EXIT="torrc.exit"
+FILE_BRIDGE="torrc.bridge"
+FILE_MIDDLE="torrc.middle"
+FILE_VPN="torrc.vpn"
+CFG_DIR="/etc/tor"
+
+if [ !-f "${CFG_DIR}/${FILE_EXIT}" ]; then
+  echo "Create ${CFG_DIR}/${FILE_EXIT}."
+  cp "/data/${FILE_EXIT}" "${CFG_DIR}/${FILE_EXIT}"
+fi
+if [ !-f "${CFG_DIR}/${FILE_BRIDGE}" ]; then
+  echo "Create ${CFG_DIR}/${FILE_BRIDGE}."
+  cp "/data/${FILE_BRIDGE}" "${CFG_DIR}/${FILE_BRIDGE}"
+fi
+if [ !-f "${CFG_DIR}/${FILE_MIDDLE}" ]; then
+  echo "Create ${CFG_DIR}/${FILE_MIDDLE}."
+  cp "/data/${FILE_MIDDLE}" "${CFG_DIR}/${FILE_MIDDLE}"
+fi
+if [ !-f "${CFG_DIR}/${FILE_VPN}" ]; then
+  echo "Create ${CFG_DIR}/${FILE_VPN}."
+  cp "/data/${FILE_VPN}" "${CFG_DIR}/${FILE_VPN}"
+fi
 
 if [ -z "$TORRC" ]; then
   echo "Please provide a valid TORRC parameter!"
@@ -45,4 +66,5 @@ cp $TORRC /etc/tor/torrc -f
 
 cat /etc/tor/torrc
 
-tor -f /etc/tor/torrc $args
+echo "tor -f /etc/tor/torrc $@"
+tor -f /etc/tor/torrc $@
